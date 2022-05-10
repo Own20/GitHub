@@ -16,6 +16,7 @@ public class MachineProblem1 {
     public static void main(String[] args) {
         Scanner PrintArray = new Scanner(System.in);    //declare scanner library named PrintArray
 
+        // while false, if input valid number = true, else invalid number (false)
         System.out.print("Enter the number of items: ");//print direction
 
         int NUM_ITEMS = PrintArray.nextInt();           //declare NUM_ITEMS to be inputed from PrintArray scanner
