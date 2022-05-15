@@ -24,13 +24,15 @@ public class BankingSystemNew {
 
         // ArrayList<Bank> bankCustomer = new ArrayList<Bank>();
         
-        boolean b = true;
-        while(b) {
+        boolean a = true;
+        while(a) {
             displayMenu();
 
             Scanner cho = new Scanner(System.in);
             System.out.print("Choice: ");
             int choice = cho.nextInt();
+
+            System.out.print("\n");
 
             if(choice == 1) {
                 Scanner ins = new Scanner(System.in);
@@ -47,6 +49,8 @@ public class BankingSystemNew {
                 System.out.print("Insert first deposit: ");
                 firstDep = ins.nextDouble();
 
+                System.out.print("\n");
+
                 acc1 = new Account(firstDep);
                 cst1 = new Customer(firstName, lastName);
                 bnk1 = new Bank(bankName);
@@ -56,7 +60,7 @@ public class BankingSystemNew {
 
                 for(int i = 0; i < bnk1.getNumOfCustomers(); i++) {
 		        	System.out.println(bnk1.getCustomer(i).getFirstName() + " " + bnk1.getCustomer(i).getLastName() + " registered in " + bnk1.getBankName() + " Bank");
-                    System.out.println("Your balance: $" + bnk1.getCustomer(i).getAccount().getBalance());
+                    System.out.println("Your balance: $" + bnk1.getCustomer(i).getAccount().getBalance() + "\n");
 		        }
             }
 
@@ -65,10 +69,10 @@ public class BankingSystemNew {
                 Scanner ins = new Scanner(System.in);
 						
 		        System.out.println("=======================================================");
-		        System.out.printf("|%5s|%10s|%10s|%12s|\n", "Num", "Bank" ,"Name", "Balance");
+		        System.out.printf("|%5s|%10s|%10s|%10s|\n", "Num", "Bank" ,"Name", "Balance");
 		        System.out.println("=======================================================");
 		        for(int i = 0; i < bnk1.getNumOfCustomers(); i++) {
-		        	System.out.printf("|%5s|%10s|%10s|%5s|\n", i + 1, bnk1.getBankName(), bnk1.getCustomer(i).getFirstName() + " " + bnk1.getCustomer(i).getLastName(), bnk1.getCustomer(i).getAccount().getBalance());
+		        	System.out.printf("|%5s|%10s|%10s|%10s|\n", i + 1, bnk1.getBankName(), bnk1.getCustomer(i).getFirstName() + " " + bnk1.getCustomer(i).getLastName(), "$" + bnk1.getCustomer(i).getAccount().getBalance());
 		        }
 		        System.out.println("=======================================================\n");
 						
@@ -89,19 +93,18 @@ public class BankingSystemNew {
                 bnk1.getCustomer(num - 1).getAccount().deposit(dep);
 
                 System.out.println("You have deposited: $" + dep);
-                System.out.println("Your current balance: $" + bnk1.getCustomer(num - 1).getAccount().getBalance());
-
-                break;
+                System.out.println("Your current balance: $" + bnk1.getCustomer(num - 1).getAccount().getBalance() + "\n");
             }
+
             else if(choice == 3) {
                 int num;
                 Scanner ins = new Scanner(System.in);
 						
 		        System.out.println("=======================================================");
-		        System.out.printf("|%5s|%10s|%10s|%12s|\n", "Num", "Bank" ,"Name", "Balance");
+		        System.out.printf("|%5s|%10s|%10s|%10s|\n", "Num", "Bank" ,"Name", "Balance");
 		        System.out.println("=======================================================");
 		        for(int i = 0; i < bnk1.getNumOfCustomers(); i++) {
-		        	System.out.printf("|%5s|%10s|%10s|%5s|\n", i + 1, bnk1.getBankName(), bnk1.getCustomer(i).getFirstName() + " " + bnk1.getCustomer(i).getLastName(), bnk1.getCustomer(i).getAccount().getBalance());
+		        	System.out.printf("|%5s|%10s|%10s|%10s|\n", i + 1, bnk1.getBankName(), bnk1.getCustomer(i).getFirstName() + " " + bnk1.getCustomer(i).getLastName(), "$" + bnk1.getCustomer(i).getAccount().getBalance());
 		        }
 		        System.out.println("=======================================================\n");
 						
@@ -122,31 +125,26 @@ public class BankingSystemNew {
                 bnk1.getCustomer(num - 1).getAccount().withdraw(wit);
 
                 System.out.println("You have withdrawn: $" + wit);
-                System.out.println("Your current balance: $" + bnk1.getCustomer(num - 1).getAccount().getBalance());
-
-                break;
+                System.out.println("Your current balance: $" + bnk1.getCustomer(num - 1).getAccount().getBalance() + "\n");
             }
+
             else if(choice == 4) {
                 System.out.println("=======================================================");
-		        System.out.printf("|%5s|%10s|%10s|%12s|\n", "Num", "Bank" ,"Name", "Balance");
+		        System.out.printf("|%5s|%10s|%10s|%10s|\n", "Num", "Bank" ,"Name", "Balance");
 		        System.out.println("=======================================================");
 		        for(int i = 0; i < bnk1.getNumOfCustomers(); i++) {
-		        	System.out.printf("|%5s|%10s|%10s|%5s|\n", i + 1, bnk1.getBankName(), bnk1.getCustomer(i).getFirstName() + " " + bnk1.getCustomer(i).getLastName(), bnk1.getCustomer(i).getAccount().getBalance());
+		        	System.out.printf("|%5s|%10s|%10s|%10s|\n", i + 1, bnk1.getBankName(), bnk1.getCustomer(i).getFirstName() + " " + bnk1.getCustomer(i).getLastName(), "$" + bnk1.getCustomer(i).getAccount().getBalance());
 		        }
 		        System.out.println("=======================================================\n");
 
-                break;
             }
             else if(choice == 5) {
                 System.out.println("Thank you for using our service!");
-                b = false;
+                a = false;
 
-                break;
             }
             else {
                 System.out.println("Invalid Action");
-
-                break;
             }
         }
     }
