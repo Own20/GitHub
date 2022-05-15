@@ -7,11 +7,11 @@ public class Customer {
         this.firstName = f;
         this.lastName = l;
     }
-    public Customer(String f, String l, Account account) {
-        this.firstName = f;
-        this.lastName = l;
-        this.account = account;
-    }
+    // public Customer(String f, String l, Account account) {
+    //     this.firstName = f;
+    //     this.lastName = l;
+    //     this.account = account;
+    // }
 
     public String getFirstName() {
         return firstName;
