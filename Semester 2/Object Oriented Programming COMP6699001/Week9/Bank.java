@@ -2,14 +2,12 @@ import java.beans.Customizer;
 import java.util.ArrayList;
 
 public class Bank {
-    private ArrayList<Customer> customerList = new ArrayList<>();
+    private ArrayList<Customer> customerList = new ArrayList<Customer>();
     private int numberOfCustomers = 0;
     private String bankName;
-    private Customer customer;
 
-    public Bank(String bankName, Customer customer) {
+    public Bank(String bankName) {
         this.bankName = bankName;
-        this.customer = customer;
     }
 
     public String getBankName() {
@@ -17,29 +15,16 @@ public class Bank {
     }
 
     public void addCustomer(String f, String l) {
-        // customerList.add(f + l);
         Customer newCustomer = new Customer(f, l);
         this.customerList.add(newCustomer);
+        numberOfCustomers++;
     }
 
     public int getNumOfCustomers() {
-        return customerList.size();
+        return numberOfCustomers;
     }
 
     public Customer getCustomer(int index) {
-        return customerList.get(index);
+        return this.customerList.get(index);
     }
-
-    public Customer letCustomer() {
-        return customer;
-    }
-
-    // public String toString() {
-    //     System.out.println("This is " + bankName + " Bank");
-
-    //     for (int i = 0; i < getNumOfCustomers() ; i++) {
-    //         System.out.println(getCustomer(i).getFirstName() + " " + getCustomer(i).getLastName());
-    //         System.out.println(Bank + getNumOfCustomers());
-    //     }
-    // }
 }
