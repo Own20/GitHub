@@ -9,6 +9,7 @@ public class BankingSystem {
         System.out.println("3. Info");
         System.out.println("4. Quit");
     }
+
     public static void main(String[] args) {
         Scanner ins = new Scanner(System.in);
 
@@ -81,26 +82,3 @@ public class BankingSystem {
         }
     }
 }
-
-// account
-// account(balance)
-// -setbalance
-// getbalance
-// deposit(amount)
-// withdraw(amount)
-
-// customer
-// customer(f, l)
-// -setfirstname
-// -setlastname
-// getfirstname
-// getlastname
-// getaccount
-// setaccount
-
-// bank
-// bank(bankname)
-// addcustomer(f, l)
-// getnumofcustomers
-// getcustomer(index)
-// tostring
