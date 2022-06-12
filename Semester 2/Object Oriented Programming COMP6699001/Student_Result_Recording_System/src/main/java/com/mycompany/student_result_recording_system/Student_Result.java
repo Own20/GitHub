@@ -624,9 +624,7 @@ public class Student_Result extends javax.swing.JFrame {                        
         + "\nTotal Score\tRanking");
         for (int i = 0; i < totalScore.size(); i++) {
             jtxtareaTranscript.append("\n" + totalScore.get(i) + "\t" + ranking.get(i));
-        }
-        
-        
+        }       
     }//GEN-LAST:event_jbtnRankingActionPerformed
 
     private void jbtnTranscriptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnTranscriptActionPerformed
