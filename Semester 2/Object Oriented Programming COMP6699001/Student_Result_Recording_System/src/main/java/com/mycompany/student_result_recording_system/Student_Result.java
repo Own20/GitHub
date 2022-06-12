@@ -1,6 +1,6 @@
 package com.mycompany.student_result_recording_system;
 
-import java.awt.Component;														// importing necessary java libraries that are used
+import java.awt.Component;							// importing necessary java libraries that are used
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Collections;
