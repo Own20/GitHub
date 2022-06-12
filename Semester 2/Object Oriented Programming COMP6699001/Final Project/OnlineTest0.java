@@ -1,23 +1,21 @@
-// Online Java Paper Test
-
 import java.awt.*;																// importing necessary java libraries that are used
 import java.awt.event.*;
 import javax.swing.*;
 
 class OnlineTest0 extends JFrame implements ActionListener {					// online test class inherit from jframe to make the window
-																				// and implement ActionListener for button execution
-	JLabel label;																// text/label in a container
-	JRadioButton radioButton[] = new JRadioButton[5];							// container to select a button from other buttons
-	JButton button1;															// regular button
-	JButton button2;															// regular button
-	ButtonGroup buttonGroup;													// to make sure only one button is selected in radio button
+																				// and implement ActionListener interface for button execution
+	JLabel label;																// initialize JLabel constructor
+	JRadioButton radioButton[] = new JRadioButton[5];							// initialize JRadioButton constructor for selecting a button from other buttons
+	JButton button1;															// initialize JButton constructor as regular button1
+	JButton button2;															// initialize JButton constructor as regular button2
+	ButtonGroup buttonGroup;													// initialize ButtonGroup constructor to make sure only one button is selected in radio button
 	int correctNumbers = 0;														// initialize number of correctNumbers
 	int wrongNumbers = 0;														// initialize number of wrongNumbers
 	int currentNumber = 0;														// initialize number of currentNumber
 	int bookmarkNumber = 1;														// initialize number of bookmarkNumber
 	int a = 1;																	// initialize a
 	int nowNumber = 0;															// initialize number of nowNumbers
-	int bkmrk[] = new int[10];													// container for bookmarked questions
+	int bkmrk[] = new int[10];													// initialize array as a container for bookmarked questions
 
 	OnlineTest0(String str) {
 		super(str);																// declare window title extending from the jframe
@@ -40,7 +38,7 @@ class OnlineTest0 extends JFrame implements ActionListener {					// online test 
 		add(button1);															// add button to the window
 		add(button2);
 		
-		questionsChoices();														// call questionChoices function
+		questionsChoices();														// call questionsChoices function
 
 		label.setBounds(60, 40, 450, 20);										// move component between x and y, resize in width and height
 		radioButton[0].setBounds(80, 80, 100, 20);
@@ -111,8 +109,8 @@ class OnlineTest0 extends JFrame implements ActionListener {					// online test 
 
 				questionsChoices();												// call the questionsChoices function
 
-				((JButton)actionEvent.getSource()).setEnabled(false);			// disable every bookmarked button
-				currentNumber = nowNumber;
+				((JButton)actionEvent.getSource()).setEnabled(false);			// disable bookmarked button after pressed
+				currentNumber = nowNumber;										// onto the next number
 			}
 		}
 	
@@ -128,13 +126,14 @@ class OnlineTest0 extends JFrame implements ActionListener {					// online test 
 			currentNumber++;													// increment currentNumber
 
 			JOptionPane.showMessageDialog(this, "Correct answer = " + correctNumbers);	// show window printing correctNumbers
-			JOptionPane.showMessageDialog(this, "Wrong answer = " + wrongNumbers);		// show window printing correctNumbers
+			JOptionPane.showMessageDialog(this, "Wrong answer = " + wrongNumbers);		// show window printing wrongNumbers
+			JOptionPane.showMessageDialog(this, "Score = " + correctNumbers + " / " + currentNumber);	// show window printing the score
 
-			System.exit(0);														// exit button only
+			System.exit(0);														// exit automatically
 		}
 	}
 
-	void questionsChoices() {
+	public void questionsChoices() {											// declaring questionsChoices function
 		radioButton[4].setSelected(true);										// set radio button to 4 buttons
 
 		if(currentNumber == 0) {												// if currentNumber == 0
@@ -211,7 +210,7 @@ class OnlineTest0 extends JFrame implements ActionListener {					// online test 
 
 		if(currentNumber == 8) {
 			label.setText("9. What is Collection in Java?");
-			label.setText("8. __________ is a collection of elements used to store the same type of data.");
+			
 			radioButton[0].setText("A group of objects");						// answer
 			radioButton[1].setText("A group of interfaces");
 			radioButton[2].setText("A group of classes");
@@ -234,7 +233,7 @@ class OnlineTest0 extends JFrame implements ActionListener {					// online test 
 		}
 	}
 
-	boolean checkAnswer() {
+	public boolean checkAnswer() {												// declaring checkAnswer function
 		if(currentNumber == 0) {												// if currentNumber equals
 			return(radioButton[1].isSelected());								// return true to correct radio button
 		}																		// return false to wrong radio button
