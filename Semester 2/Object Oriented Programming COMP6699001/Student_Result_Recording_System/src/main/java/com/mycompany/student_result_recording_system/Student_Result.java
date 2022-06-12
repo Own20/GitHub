@@ -1,6 +1,6 @@
 package com.mycompany.student_result_recording_system;
 
-import java.awt.Component;
+import java.awt.Component;														// importing necessary java libraries that are used
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -478,7 +478,7 @@ public class Student_Result extends javax.swing.JFrame {                        
 
             },
             new String [] {
-                "Student ID", "Course Code", "Character Building", "Indonesian", "Mathematics", "History", "English", "Arts", "Physical Education", "Enterpreneurship", "Biology", "Physics", "Chemistry", "Economics", "Total Score", "Average", "Ranking"
+                "Student ID", "Course Code", "Character Building", "Indonesian", "Mathematics", "History", "English", "Arts", "Physical Education", "Enterpreneurship", "Biology", "Physics", "Chemistry", "Economics", "Total Score", "Average"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -499,7 +499,6 @@ public class Student_Result extends javax.swing.JFrame {                        
             jTable1.getColumnModel().getColumn(13).setPreferredWidth(70);
             jTable1.getColumnModel().getColumn(14).setPreferredWidth(70);
             jTable1.getColumnModel().getColumn(15).setPreferredWidth(50);
-            jTable1.getColumnModel().getColumn(16).setPreferredWidth(50);
         }
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 500, 1260, 140));
@@ -520,7 +519,7 @@ public class Student_Result extends javax.swing.JFrame {                        
                 jbtnRankingActionPerformed(evt);
             }
         });
-        getContentPane().add(jbtnRanking, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 420, 120, -1));
+        getContentPane().add(jbtnRanking, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 420, 120, -1));
 
         jbtnTranscript.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jbtnTranscript.setText("Transcript");
@@ -529,7 +528,7 @@ public class Student_Result extends javax.swing.JFrame {                        
                 jbtnTranscriptActionPerformed(evt);
             }
         });
-        getContentPane().add(jbtnTranscript, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 420, -1, -1));
+        getContentPane().add(jbtnTranscript, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 420, -1, -1));
 
         jbtnExit.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jbtnExit.setText("Exit");
@@ -561,6 +560,7 @@ public class Student_Result extends javax.swing.JFrame {                        
                 temp.setText(null);
             }
         }
+        jtxtareaTranscript.setText(null);
     }//GEN-LAST:event_jbtnResetActionPerformed
 
     private JFrame frame;
