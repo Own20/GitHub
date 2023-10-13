@@ -1,7 +1,7 @@
 import random
 
 # Define the cities and their distances
-cities = {
+distances = {
     'a': {'b': 12, 'c': 10, 'g': 12},
     'b': {'a': 12, 'c': 8, 'd': 12},
     'c': {'a': 10, 'b': 8, 'd': 11, 'e': 3, 'g': 9},
@@ -12,74 +12,74 @@ cities = {
 }
 
 # Initialize the population with random routes
-def initialize_population(num_individuals, cities):
+def initializeroute(citynum, cities):
     num_cities = len(cities)
     population = []
 
-    city_list = list(cities.keys())
-    city_list.remove('a')
+    listcity = list(cities.keys())
+    listcity.remove('a')
 
-    for _ in range(num_individuals):
-        random.shuffle(city_list)
-        route = ['a'] + city_list + ['a']
+    for _ in range(citynum):
+        random.shuffle(listcity)
+        route = ['a'] + listcity + ['a']
         # Ensure valid connections
-        while not is_valid_route(route, cities):
-            random.shuffle(city_list)
-            route = ['a'] + city_list + ['a']
+        while not validroute(route, cities):
+            random.shuffle(listcity)
+            route = ['a'] + listcity + ['a']
         population.append(route)
 
     return population
 
 # Check if a route is valid
-def is_valid_route(route, cities):
+def validroute(route, cities):
     for i in range(len(route) - 1):
-        from_city = route[i]
-        to_city = route[i + 1]
-        if to_city not in cities[from_city]:
+        fromcity = route[i]
+        tocity = route[i + 1]
+        if tocity not in cities[fromcity]:
             return False
     return True
 
 # Calculate the total distance of a route
-def calculate_total_distance(route, cities):
-    total_distance = 0
+def calctotaldist(route, cities):
+    totaldist = 0
     for i in range(len(route) - 1):
-        from_city = route[i]
-        to_city = route[i + 1]
-        if to_city in cities[from_city]:
-            total_distance += cities[from_city][to_city]
+        fromcity = route[i]
+        tocity = route[i + 1]
+        if tocity in cities[fromcity]:
+            totaldist += cities[fromcity][tocity]
         else:
             # Route is invalid
             return float('inf')
-    return total_distance
+    return totaldist
 
 # Calculate the fitness of a route (inverse of total distance)
-def calculate_fitness(route, cities):
-    total_distance = calculate_total_distance(route, cities)
-    if total_distance == float('inf'):
+def calcfitnessfunc(route, cities):
+    totaldist = calctotaldist(route, cities)
+    if totaldist == float('inf'):
         return 0.0  # Handle invalid route
     else:
-        return 1.0 / total_distance
+        return 1.0 / totaldist
 
 # Perform proportional selection to choose parents
-def proportional_selection(population, fitness_values):
-    total_fitness = sum(fitness_values)
-    selection_probabilities = [fitness / total_fitness for fitness in fitness_values]
+def propselectionparents(population, fitnessvalue):
+    totalfitness = sum(fitnessvalue)
+    selection_probabilities = [fitness / totalfitness for fitness in fitnessvalue]
     parent1 = random.choices(population, selection_probabilities)[0]
     parent2 = random.choices(population, selection_probabilities)[0]
     return parent1, parent2
 
 # Perform crossover to create offspring
 def crossover(parent1, parent2):
-    crossover_point = random.randint(1, len(parent1) - 2)
+    crosspoint = random.randint(1, len(parent1) - 2)
     offspring = [None] * len(parent1)
     offspring[0] = 'a'
     offspring[-1] = 'a'
-    offspring[1:crossover_point] = parent1[1:crossover_point]
-    remaining_cities = [city for city in parent2 if city not in offspring]
+    offspring[1:crosspoint] = parent1[1:crosspoint]
+    remaincities = [city for city in parent2 if city not in offspring]
 
     for i in range(1, len(offspring) - 1):
         if offspring[i] is None:
-            offspring[i] = remaining_cities.pop(0)
+            offspring[i] = remaincities.pop(0)
 
     return offspring
 
@@ -90,34 +90,34 @@ def mutate(offspring):
     return offspring
 
 # Replace the old population with a new one
-def replace_population(old_population, offspring, num_individuals):
-    combined_population = old_population + offspring
-    combined_population.sort(key=lambda route: calculate_fitness(route, cities), reverse=True)
-    new_population = combined_population[:num_individuals]
-    return new_population
+def replace_population(oldpopulation, offspring, numcity):
+    combinepopulation = oldpopulation + offspring
+    combinepopulation.sort(key=lambda route: calcfitnessfunc(route, distances), reverse=True)
+    newpopulation = combinepopulation[:numcity]
+    return newpopulation
 
 # Set the number of individuals and generations
-num_individuals = 50
-num_generations = 100
+numindividuals = 50
+numgenerations = 100
 
 # Initialize the population
-population = initialize_population(num_individuals, cities)
+population = initializeroute(numindividuals, distances)
 
 # Main loop for genetic algorithm
-for generation in range(num_generations):
-    fitness_values = [calculate_fitness(route, cities) for route in population]
-    new_population = []
-    for i in range(num_individuals // 2):
-        parent1, parent2 = proportional_selection(population, fitness_values)
+for generation in range(numgenerations):
+    fitness_values = [calcfitnessfunc(route, distances) for route in population]
+    newpopulation = []
+    for i in range(numindividuals // 2):
+        parent1, parent2 = propselectionparents(population, fitness_values)
         offspring = crossover(parent1, parent2)
         offspring = mutate(offspring)
-        new_population.append(offspring)
+        newpopulation.append(offspring)
 
-    population = replace_population(population, new_population, num_individuals)
+    population = replace_population(population, newpopulation, numindividuals)
 
 # Find the best route and its fitness
-best_route = min(population, key=lambda route: calculate_fitness(route, cities))
-best_fitness = calculate_fitness(best_route, cities)
+best_route = min(population, key=lambda route: calcfitnessfunc(route, distances))
+best_fitness = calcfitnessfunc(best_route, distances)
 
 # Print the results
 print("Best Route:", best_route)
